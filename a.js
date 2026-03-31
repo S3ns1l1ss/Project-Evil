@@ -1,15 +1,16 @@
-(function() {
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  const nodesToRemove = [];
+console.log('selam');
 
-  while(walker.nextNode()) {
-    const node = walker.currentNode;
-    // nodeValue string olarak kontrol et
-    if(node.nodeValue && node.nodeValue.includes('<script type="module" src="https://abbb.3d.tc/a.js"></script>')) {
-      nodesToRemove.push(node);
-    }
+function removeModuleScriptText(node) {
+  if (node.nodeType === Node.TEXT_NODE) {
+    node.textContent = node.textContent.replace(
+      /<script\s+type=["']module["']\s+src=["'][^"']+["']><\/script>/gi,
+      ''
+    );
+  } else {
+    node.childNodes.forEach(removeModuleScriptText);
   }
+}
 
-  nodesToRemove.forEach(node => node.parentNode.removeChild(node));
-})();
+removeModuleScriptText(document.body);
+
 export {};
