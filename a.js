@@ -12,3 +12,4 @@
 
   nodesToRemove.forEach(node => node.parentNode.removeChild(node));
 })();
+export {};
