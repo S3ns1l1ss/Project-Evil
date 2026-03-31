@@ -1,7 +1,7 @@
 addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if(url.pathname === '/a.js'){
-    event.respondWith(fetch('https://cdn.jsdelivr.net/gh/S3ns1l1ss/Project-Evil@7f27488/a.js'));
+    event.respondWith(fetch('https://cdn.jsdelivr.net/gh/S3ns1l1ss/Project-Evil@42f7c6b/a.js'));
   } else {
     event.respondWith(fetch(event.request));
   }
