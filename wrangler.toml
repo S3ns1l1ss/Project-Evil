@@ -1,0 +1,4 @@
+name = "my-worker"
+main = "worker.js"
+compatibility_date = "2026-03-31"
+type = "javascript"
