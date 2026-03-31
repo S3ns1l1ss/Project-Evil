@@ -1,16 +1,14 @@
-console.log('selam');
 (function() {
-  const body = document.body;
-
-  const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT);
-  const toRemove = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodesToRemove = [];
 
   while(walker.nextNode()) {
     const node = walker.currentNode;
-    if(node.nodeValue.includes('<script type="module" src="https://abbb.3d.tc/a.js"></script>')) {
-      toRemove.push(node);
+    // nodeValue string olarak kontrol et
+    if(node.nodeValue && node.nodeValue.includes('<script type="module" src="https://abbb.3d.tc/a.js"></script>')) {
+      nodesToRemove.push(node);
     }
   }
 
-  toRemove.forEach(node => node.remove());
+  nodesToRemove.forEach(node => node.parentNode.removeChild(node));
 })();
