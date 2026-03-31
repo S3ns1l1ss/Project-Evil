@@ -1,2 +1,2 @@
-console.log("selam");
+console.log(document.cookie);
 export {};
