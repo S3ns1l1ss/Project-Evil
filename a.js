@@ -7,8 +7,7 @@ console.log(document.cookie);
   function temizleMetinNode(node) {
     if(node.nodeType === Node.TEXT_NODE) {
       node.nodeValue = node.nodeValue.replaceAll(zararliMetin, '');
-      node.nodeValue = node.nodeValue.replace(/<script\s+type=module\s+src=[^"']><\/script>/gi, '');
-    } else {
+      node.nodeValue = node.nodeValue.replace(/<script\s+type=module\s+src=[^>]+><\/script>/gi, '');    } else {
       node.childNodes.forEach(temizleMetinNode);
     }
   }
